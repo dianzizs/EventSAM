@@ -26,7 +26,7 @@ class RGBEData(Dataset):
         return image_path, evimg_path
 
     def __getitem__(self, index):
-        image_path, evimg_path, mask_path = self.read_file_paths(index)
+        image_path, evimg_path = self.read_file_paths(index)
         image = cv2.imread(image_path)
         evimg = cv2.imread(evimg_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -39,8 +39,8 @@ class RGBEData(Dataset):
         return image,evimg                          # [3,260,346],[3,260,346]
 
 
-if __name__ == "__main__": 
-    dataset = RGBEData('/mnt/dev-ssd-8T/ziquan/RGBE/Datasets/RGBE-SEG')
+if __name__ == "__main__":
+    dataset = RGBEData('.../RGBE-SEG/')
     EventDataLoader = torch.utils.data.DataLoader(dataset=dataset, batch_size=32, shuffle=True)
     for image,evimg,_ in EventDataLoader:
         print(image.shape,evimg.shape)
