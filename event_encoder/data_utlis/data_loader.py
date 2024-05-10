@@ -36,11 +36,11 @@ class RGBEData(Dataset):
         image = (image - self.image_pixel_mean) / self.image_pixel_std
         evimg = (evimg - self.evimg_pixel_mean) / self.evimg_pixel_std
 
-        return image,evimg,mask                          # [3,260,346],[3,260,346]
+        return image,evimg                          # [3,260,346],[3,260,346]
 
 
-if __name__ == "__main__":
-    dataset = RGBEData('.../RGBE-SEG/')
+if __name__ == "__main__": 
+    dataset = RGBEData('/mnt/dev-ssd-8T/ziquan/RGBE/Datasets/RGBE-SEG')
     EventDataLoader = torch.utils.data.DataLoader(dataset=dataset, batch_size=32, shuffle=True)
     for image,evimg,_ in EventDataLoader:
         print(image.shape,evimg.shape)

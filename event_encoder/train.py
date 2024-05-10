@@ -24,7 +24,7 @@ def run():
     for name, param in RGBE_Encoder.named_parameters():
         param.requires_grad = False
 
-    train_block_list = ["evimg_encoder.patch_embed"] + ["evimg_encoder.blocks." + str(i) + ".mlp" for i in [2, 5, 8, 11]]
+    train_block_list = ["evimg_encoder.patch_embed"] + ["evimg_encoder.blocks." + str(i) + ".mlp" for i in [2, 5, 8, 11]]#how to set the train block list
     for name, param in RGBE_Encoder.named_parameters():
         for block_name in train_block_list:
             if block_name in name:
@@ -85,6 +85,6 @@ def run():
 
 
 if __name__ == '__main__':
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '1,2,3,4'
     run()
 
